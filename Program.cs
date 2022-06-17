@@ -43,18 +43,23 @@ namespace ActiveWinTest {
         }
 
         private static async Task<string> SendPostRequest(string url, string activeWindow) {
-            var body = new Dictionary<string, string> {
-                { "windowTitle", activeWindow }
-            };
+            try {
+                var body = new Dictionary<string, string> {
+                    { "windowTitle", activeWindow }
+                };
 
-            var content = JsonSerializer.Serialize(body);
-            HttpResponseMessage response = null;
-            using (var client = new HttpClient()) {
-                response = await client.PostAsync(url, new StringContent(content, Encoding.UTF8, "application/json"));
+                var content = JsonSerializer.Serialize(body);
+                HttpResponseMessage response = null;
+                using (var client = new HttpClient()) {
+                    response = await client.PostAsync(url, new StringContent(content, Encoding.UTF8, "application/json"));
+                }
+
+                string result = response.Content.ReadAsStringAsync().Result;
+                return result;
+            } catch (Exception ex) {
+                Console.WriteLine("Error in SendPostRequest");
+                return "";
             }
-
-            string result = response.Content.ReadAsStringAsync().Result;
-            return result;
         }
     }
 }
