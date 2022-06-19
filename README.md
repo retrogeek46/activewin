@@ -6,4 +6,4 @@ This program keeps track of currently active window and sends any changes to act
 - install dotnet core stuff
 
 ### Run
-- dotnet run
+- Run with `dotnet run`
