@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 using System.Net.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace ActiveWinTest {
     class Program {
@@ -25,6 +26,7 @@ namespace ActiveWinTest {
 
             string oldTitle = "";
             const int nChars = 256;
+            int sleepDuration = 500;
             StringBuilder Buff = new StringBuilder(nChars);
             while (true) {
                 IntPtr handle = GetForegroundWindow();
@@ -39,6 +41,8 @@ namespace ActiveWinTest {
                     Console.WriteLine(currentTitle);
                     await SendPostRequest("http://localhost:3456/updateActiveWin", currentTitle);
                 }
+
+                Thread.Sleep(sleepDuration);
             }
         }
 
