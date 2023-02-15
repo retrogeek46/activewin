@@ -1,5 +1,5 @@
 # Active Win
-This program keeps track of currently active window and sends any changes to active window over to [SnipShare](https://github.com/retrogeek46/snipshare) server using REST api call
+This program keeps track of currently active window and sends the title of currenlty focused window and the currently playing media details over to a server using REST api call.
 
 ### Installation
 - clone the repo
